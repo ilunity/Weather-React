@@ -1,4 +1,4 @@
-import {SET_CURRENT_CITY, SET_WEATHER_DATA, ADD_CITY, REMOVE_CITY} from './actions.js';
+import {SET_CURRENT_CITY, SET_WEATHER_DATA, SET_FORECAST_DATA, ADD_CITY, REMOVE_CITY} from './actions.js';
 
 
 function setCurrentCity(cityName) {
@@ -6,7 +6,11 @@ function setCurrentCity(cityName) {
 }
 
 function setWeatherData(weatherData) {
-    return{type: SET_WEATHER_DATA, weatherData: weatherData};
+    return {type: SET_WEATHER_DATA, weatherData: weatherData};
+}
+
+function setForecastData(forecastData) {
+    return {type: SET_FORECAST_DATA, forecastData: forecastData};
 }
 
 function addCity(cityName) {
