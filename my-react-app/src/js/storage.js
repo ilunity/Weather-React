@@ -35,7 +35,7 @@ storage.saveFavoriteCities = function (favoriteCities) {
 
 
 
-storage.saveCurrentCity = function (cityName) {
+storage.setCurrentCity = function (cityName) {
     localStorage.setItem(
         CURRENT_CITY,
         cityName
