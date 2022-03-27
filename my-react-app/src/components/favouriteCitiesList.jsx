@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/weatherAppStyle.css';
 import {useDispatch, useSelector} from "react-redux";
-import {removeCity, setCurrentCity} from "../globalState/actions";
+import {removeCity, setCurrentCity} from "../globalStore/actions";
 
 
 function FavouriteCityItem(props) {

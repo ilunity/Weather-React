@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 // import './index.css'
 import {WeatherApp} from './jsx/weatherApp';
 import {Provider} from "react-redux";
-import {store} from "./globalState/store";
+import {store} from "./globalStore/store";
 
 ReactDOM.render(
     <Provider store={store}>

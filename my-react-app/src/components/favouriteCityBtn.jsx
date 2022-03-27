@@ -1,7 +1,7 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {defineIsActiveClass} from "./utilities";
-import {addCity, removeCity} from "../globalState/actions";
+import {addCity, removeCity} from "../globalStore/actions";
 
 
 const BTN_STYLES = {

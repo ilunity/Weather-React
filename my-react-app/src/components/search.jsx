@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import '../css/weatherAppStyle.css';
 import magnifierSvg from '../img/icons/magnifier.svg';
-import {setCurrentCity} from "../globalState/actions";
+import {setCurrentCity} from "../globalStore/actions";
 import {useDispatch} from "react-redux";
 
 
