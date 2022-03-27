@@ -13,7 +13,7 @@ const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f';
 
 //todo Обработка ошибок
 
-async function getRequest(url, cityName) {
+async function getRequest(url) {
     let response = await fetch(url);
     let data = await response.json();
 
