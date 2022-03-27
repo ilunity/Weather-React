@@ -4,8 +4,9 @@ import {
     SET_FORECAST_DATA,
     ADD_CITY,
     REMOVE_CITY,
-    FETCH_WEATHER_DATA, FETCH_FORECAST_DATA, SET_FAVOURITE_CITIES
+    SET_FAVOURITE_CITIES
 } from './actions.js';
+import {FETCH_WEATHER_DATA, FETCH_FORECAST_DATA} from './asyncActions';
 import {combineReducers} from "redux";
 
 function weatherDataReducer(

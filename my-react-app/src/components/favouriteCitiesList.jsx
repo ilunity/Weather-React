@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/weatherAppStyle.css';
 import {useDispatch, useSelector} from "react-redux";
-import {removeCity} from "../globalState/actions";
+import {removeCity, setCurrentCity} from "../globalState/actions";
 
 
 function FavouriteCityItem(props) {
@@ -12,9 +12,16 @@ function FavouriteCityItem(props) {
         dispatch(removeCity(cityName));
     }
 
+    function handleClickCity() {
+        dispatch(setCurrentCity(cityName));
+    }
+
     return (
         <li key={cityName}>
-            <p className="location__city-name">
+            <p
+                onClick={handleClickCity}
+                className="location__city-name"
+            >
                 {cityName}
             </p>
             <span

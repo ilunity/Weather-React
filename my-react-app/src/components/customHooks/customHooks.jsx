@@ -1,5 +1,6 @@
-import {useDispatch, useSelector} from "react-redux";
-import {fetchForecastData, fetchWeatherData, setCurrentCity, setFavouriteCities} from "../../globalState/actions";
+import {useSelector} from "react-redux";
+import {setCurrentCity, setFavouriteCities} from "../../globalState/actions";
+import {fetchForecastData, fetchWeatherData} from "../../globalState/asyncActions";
 import {storage} from "../../js/storage";
 
 function useLoadStorage(dispatch) {

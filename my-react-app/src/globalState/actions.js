@@ -1,4 +1,3 @@
-import {fetchNowWeather, fetchForecastWeather} from "../js/fetchWeatherAPI.js";
 import {storage} from "../js/storage";
 
 
@@ -16,35 +15,12 @@ function setWeatherData(weatherData) {
     return {type: SET_WEATHER_DATA, weatherData: weatherData};
 }
 
-const FETCH_WEATHER_DATA = 'FETCH_WEATHER_DATA';
-
-function fetchWeatherData(cityName) {
-    return async function (dispatch) {
-        dispatch({type: FETCH_WEATHER_DATA});
-
-        const weatherData = await fetchNowWeather(cityName);
-        dispatch(setWeatherData(weatherData));
-    }
-}
-
-
 const SET_FORECAST_DATA = 'SET_FORECAST_DATA';
 
 function setForecastData(forecastData) {
     return {type: SET_FORECAST_DATA, forecastData: forecastData};
 }
 
-const FETCH_FORECAST_DATA = 'FETCH_FORECAST_DATA';
-
-function fetchForecastData(cityName) {
-    return async function (dispatch) {
-        dispatch({type: FETCH_FORECAST_DATA});
-
-        const forecastData = await fetchForecastWeather(cityName);
-
-        dispatch(setForecastData(forecastData));
-    }
-}
 
 const SET_FAVOURITE_CITIES = 'SET_FAVOURITE_CITIES';
 
@@ -72,11 +48,9 @@ export {
     SET_CURRENT_CITY,
     setCurrentCity,
     SET_WEATHER_DATA,
-    FETCH_WEATHER_DATA,
-    fetchWeatherData,
+    setWeatherData,
     SET_FORECAST_DATA,
-    FETCH_FORECAST_DATA,
-    fetchForecastData,
+    setForecastData,
     SET_FAVOURITE_CITIES,
     setFavouriteCities,
     ADD_CITY,
