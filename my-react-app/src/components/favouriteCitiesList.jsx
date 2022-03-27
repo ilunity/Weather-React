@@ -1,17 +1,26 @@
 import React from 'react';
-import '../css/style.css';
-import {useSelector} from "react-redux";
+import '../css/weatherAppStyle.css';
+import {useDispatch, useSelector} from "react-redux";
+import {removeCity} from "../globalState/actions";
 
 
 function FavouriteCityItem(props) {
     const {cityName} = props;
+    const dispatch = useDispatch();
+
+    function handleDeleteCity() {
+        dispatch(removeCity(cityName));
+    }
 
     return (
-        <li>
+        <li key={cityName}>
             <p className="location__city-name">
                 {cityName}
             </p>
-            <span className="location__delete-btn"/>
+            <span
+                onClick={handleDeleteCity}
+                className="location__delete-btn"
+            />
         </li>
     )
 }
@@ -21,14 +30,14 @@ function FavouriteCitiesList(props) {
 
 
     return (
-        <div className={'info__location location'}>
+        <div className={'main-window__location location'}>
             <div className="location__title">
                 Added Locations:
             </div>
             <ul className="location__list">
                 {
                     favouriteCities.map((city) => {
-                        <FavouriteCityItem cityName={city} />
+                        return <FavouriteCityItem cityName={city}/>
                     })
                 }
             </ul>

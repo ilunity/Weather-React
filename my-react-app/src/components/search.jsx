@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
-import '../css/style.css';
+import '../css/weatherAppStyle.css';
+import magnifierSvg from '../img/icons/magnifier.svg';
+import {setCurrentCity} from "../globalState/actions";
+import {useDispatch} from "react-redux";
+
 
 function Search(props) {
-    const {onSubmit} = props;
+    const dispatch = useDispatch();
     const [value, setValue] = useState("");
 
     function handleChange(e) {
@@ -11,21 +15,23 @@ function Search(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        onSubmit(value);
+
+        setValue("");
+        dispatch(setCurrentCity(value));
     }
 
     return (
         <div className="search">
-            <form className="search__form">
+            <form className="search__form" onSubmit={handleSubmit}>
                 <input
                     type="text"
                     className="search__city"
                     placeholder="Aktobe"
+                    value={value}
                     onChange={handleChange}
-                    onSubmit={handleSubmit}
                 />
                 <button className="search__submit-btn">
-                    <img src="../img/icons/magnifier.svg" alt="Иконка найти город"/>
+                    <img src={magnifierSvg} alt="Иконка найти город"/>
                 </button>
             </form>
         </div>

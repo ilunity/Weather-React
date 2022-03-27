@@ -1,9 +1,9 @@
 import React from 'react';
-import '../../css/style.css';
-import {Tabs} from "../tabs";
+import '../../css/weatherAppStyle.css';
+import {Tabs} from "../index";
 
 
-function ResultTab(props) {
+function ResultTabs(props) {
     const {resultWindowNames, activeTab, onChange} = props;
 
     const tabs = resultWindowNames.map((tabName) => {
@@ -27,4 +27,4 @@ function ResultTab(props) {
     )
 }
 
-export {ResultTab};
+export {ResultTabs};

@@ -1,6 +1,14 @@
 import React from 'react';
-import '../css/style.css';
-
+import '../css/weatherAppStyle.css';
+import {
+    thunderstormIcon,
+    showerRainIcon,
+    rainIcon,
+    snowIcon,
+    mistIcon,
+    clearSkyIcon,
+    scatteredClouds
+} from "../img/weather-icons/index.js";
 
 const WEATHER_TYPES = {
     THUNDERSTORM: 'thunderstorm',
@@ -13,13 +21,13 @@ const WEATHER_TYPES = {
 }
 
 const WEATHER_SOURCES = {
-    [WEATHER_TYPES.THUNDERSTORM]: '../img/weather-icons/thunderstorm',
-    [WEATHER_TYPES.SHOWER_RAIN]: '../img/weather-icons/shower-rain',
-    [WEATHER_TYPES.RAIN]: '../img/weather-icons/rain',
-    [WEATHER_TYPES.SNOW]: '../img/weather-icons/snow',
-    [WEATHER_TYPES.MIST]: '../img/weather-icons/mist',
-    [WEATHER_TYPES.CLEAR_SKY]: '../img/weather-icons/clear-sky',
-    [WEATHER_TYPES.SCATTERED_CLOUDS]: '../img/weather-icons/scattered-clouds',
+    [WEATHER_TYPES.THUNDERSTORM]: thunderstormIcon,
+    [WEATHER_TYPES.SHOWER_RAIN]: showerRainIcon,
+    [WEATHER_TYPES.RAIN]: rainIcon,
+    [WEATHER_TYPES.SNOW]: snowIcon,
+    [WEATHER_TYPES.MIST]: mistIcon,
+    [WEATHER_TYPES.CLEAR_SKY]: clearSkyIcon,
+    [WEATHER_TYPES.SCATTERED_CLOUDS]: scatteredClouds,
 }
 
 function getWeatherTypeFromID(weatherID) {
@@ -46,4 +54,4 @@ function WeatherIcon(props) {
     )
 }
 
-export {WEATHER_TYPES};
+export {WeatherIcon};

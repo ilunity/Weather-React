@@ -1,27 +1,30 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import '../../css/style.css';
-import {WeatherIcon} from "../weatherIcon";
-import {FavouriteCityBtn} from "../favouriteCityBtn";
+import '../../css/weatherAppStyle.css';
+import {FavouriteCityBtn, WeatherIcon} from "../index";
+import {defineIsActiveClass} from "../utilities";
+
+function useGetStore() {
+    const weatherData = useSelector((store) => store.weatherData.payload);
+    const currentCity = useSelector(store => store.currentCity);
+
+    return {weatherData, currentCity};
+}
 
 
 function ResultNow(props) {
     const {isActive} = props;
 
-    const {main: {temp}, weather: [{id: weatherID}]} = useSelector((store) => store.weatherData);
-    const currentCity = useSelector(store => store.currentCity);
+    const {weatherData: {main: {temp}, weather: [{id: weatherID}]}, currentCity} = useGetStore();
 
-    const visibleClass = isActive
-        ? 'info__window_active'
-        : 'info__window_nonactive';
-    const className = 'info__now info__window now-window ' + visibleClass;
+    const className = 'result-window__item now-window ' + defineIsActiveClass('result-window__item',isActive);
 
     return (
         <div className={className}>
             <p className="now-window__temperature">
                 {Math.round(temp) + "°"}
             </p>
-            <div className="now-window__weather-icon weather-icon_rain">
+            <div className="now-window__weather-icon weather-icon">
                 <WeatherIcon weatherId={weatherID}/>
             </div>
             <div className="now-window__city-info city-info">

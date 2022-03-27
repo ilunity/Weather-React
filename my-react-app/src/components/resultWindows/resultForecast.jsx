@@ -1,7 +1,9 @@
 import React from 'react';
-import '../../css/style.css';
+import '../../css/weatherAppStyle.css';
 import {useSelector} from "react-redux";
-import {WeatherIcon} from "../weatherIcon";
+import {WeatherIcon} from "../index";
+import {getStringFromDateType, defineIsActiveClass} from "../utilities";
+
 
 const MONTHS_LIST = {
     0: 'January',
@@ -16,25 +18,6 @@ const MONTHS_LIST = {
     9: 'October',
     10: 'November',
     11: 'December',
-}
-
-// todo to utilities
-function getStringFromDateType(date) {
-    // return hours and minutes from date type in UTC
-    let resultTime = "";
-
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-
-    resultTime += (hours < 10 ?
-        "0" + hours :
-        hours);
-
-    resultTime += ":" + (minutes < 10 ?
-        "0" + minutes :
-        minutes);
-
-    return resultTime;
 }
 
 
@@ -53,7 +36,7 @@ function ForecastItem(props) {
         <li className={'forecast-window__item forecast-item'}>
             <div className="forecast-item__date">
                 <div className="forecast-item__day">
-                    { `${date.getDate()} ${MONTHS_LIST[date.getMonth()]}` }
+                    {`${date.getDate()} ${MONTHS_LIST[date.getMonth()]}`}
                 </div>
                 <div className="forecast-item__time">
                     {getStringFromDateType(date)}
@@ -72,7 +55,9 @@ function ForecastItem(props) {
                     <div className="forecast-item__weather-type">
                         {weatherType}
                     </div>
-                    <WeatherIcon weatherId={weatherId} />
+                    <div className={"forecast-item__weather-icon"}>
+                        <WeatherIcon weatherId={weatherId}/>
+                    </div>
                 </div>
             </div>
         </li>
@@ -80,12 +65,12 @@ function ForecastItem(props) {
 }
 
 function ForecastList(props) {
-    const {list: forecastList} = useSelector(store => store.forecastData);
+    const {list: forecastList} = useSelector(store => store.forecastData.payload);
 
     return (
         <ul className="forecast-window__list">
             {forecastList.map((forecastItem) => {
-                return <ForecastItem forecastItem={forecastItem} />
+                return <ForecastItem forecastItem={forecastItem}/>
             })}
         </ul>
     )
@@ -96,11 +81,7 @@ function ResultForecast(props) {
 
     const currentCity = useSelector(store => store.currentCity);
 
-
-    const visibleClass = isActive
-        ? 'info__window_active'
-        : 'info__window_nonactive';
-    const className = 'info__forecast info__window forecast-window ' + visibleClass;
+    const className = 'result-window__item forecast-window ' + defineIsActiveClass('result-window__item', isActive);
 
     return (
         <div className={className}>

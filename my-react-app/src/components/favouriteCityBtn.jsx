@@ -1,5 +1,7 @@
 import React from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {defineIsActiveClass} from "./utilities";
+import {addCity, removeCity} from "../globalState/actions";
 
 
 const BTN_STYLES = {
@@ -7,18 +9,26 @@ const BTN_STYLES = {
     NONACTIVE: 'city-info__add-favorite_not-added',
 }
 
-export function FavouriteCityBtn(props) {
+function FavouriteCityBtn(props) {
     const {cityName} = props;
     const favouriteCities = useSelector(store => store.citiesList);
+    const dispatch = useDispatch();
 
+    const isActive = favouriteCities.includes(cityName);
+    const className = 'city-info__add-favorite ' + defineIsActiveClass('city-info__add-favorite', isActive);
 
-    const activeClassName = favouriteCities.includes(cityName)
-        ? BTN_STYLES.ACTIVE
-        : BTN_STYLES.NONACTIVE;
-
-    const className = 'city-info__add-favorite ' + activeClassName;
+    function handleClick() {
+        isActive
+            ? dispatch(removeCity(cityName))
+            : dispatch(addCity(cityName));
+    }
 
     return (
-        <div className={}/>
+        <div
+            className={className}
+            onClick={handleClick}
+        />
     )
 }
+
+export {FavouriteCityBtn};

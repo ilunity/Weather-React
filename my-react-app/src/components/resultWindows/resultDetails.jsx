@@ -1,19 +1,15 @@
 import React from 'react';
-import '../../css/style.css';
 import {useSelector} from "react-redux";
+import '../../css/weatherAppStyle.css';
 import {format} from 'date-fns';
+import {getLocalTime} from "../../utilities/timeConverting";
+import {defineIsActiveClass} from "../utilities";
 
+function useGetStore() {
+    const weatherData = useSelector(store => store.weatherData.payload);
+    const currentCity = useSelector(store => store.currentCity);
 
-function getLocalTime(timeInSeconds, timezoneOffset) {
-    const queryDate = new Date(timeInSeconds * 1000);
-    timezoneOffset *= 1000;
-
-    const ipDate = new Date();
-    const ipTimezoneOffset = -ipDate.getTimezoneOffset() * 60000;
-
-    const timezoneDifference = timezoneOffset - ipTimezoneOffset;
-
-    return new Date(queryDate.getTime() + timezoneDifference);
+    return {weatherData, currentCity};
 }
 
 
@@ -21,21 +17,18 @@ function ResultDetails(props) {
     const {isActive} = props;
 
     const {
-        main: {temp, feels_like},
-        weather: [{main: weather}],
-        timezone,
-        sys: {sunrise, sunset}
-    } = useSelector((store) => store.weatherData);
-    const currentCity = useSelector(store => store.currentCity);
-
+        weatherData: {
+            main: {temp, feels_like},
+            weather: [{main: weather}],
+            timezone,
+            sys: {sunrise, sunset}
+        }, currentCity
+    } = useGetStore();
 
     const sunriseDate = getLocalTime(sunrise, timezone);
     const sunsetDate = getLocalTime(sunset, timezone);
 
-    const visibleClass = isActive
-        ? 'info__window_active'
-        : 'info__window_nonactive';
-    const className = 'info__details info__window details-window ' + visibleClass;
+    const className = 'result-window__item details-window ' + defineIsActiveClass('result-window__item', isActive);
 
     return (
         <div className={className}>
